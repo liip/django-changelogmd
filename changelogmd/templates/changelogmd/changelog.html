@@ -1,0 +1,10 @@
+{% load changelogmd %}
+
+{% block header %}{% endblock %}
+
+{% block changelog %}
+{{ changelog|markdownify }}
+{% endblock %}
+
+
+{% block footer %}{% endblock %}
