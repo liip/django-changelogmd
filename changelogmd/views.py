@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import TemplateView
 
 
@@ -14,3 +15,8 @@ class ChangelogMDView(TemplateView):
                 return {"changelog": f.read()}
         except (AttributeError, FileNotFoundError):
             return {}
+
+
+class AdminProtectedChangelogMDView(UserPassesTestMixin, ChangelogMDView):
+    def test_func(self):
+        return self.request.user.is_staff
