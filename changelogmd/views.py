@@ -13,7 +13,7 @@ class ChangelogMDView(TemplateView):
         try:
             with open(self.get_changelog_path(), "r") as f:
                 return {"changelog": f.read()}
-        except (AttributeError, FileNotFoundError):
+        except FileNotFoundError:
             return {}
 
 
